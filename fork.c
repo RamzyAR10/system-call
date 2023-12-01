@@ -72,9 +72,10 @@
 //id
 	//parent process of chiled id = main process id
 	//chilld id = main pid
-int main()
+/*int main()
 {
 	int pid = fork();
+	int did = fork();
 	if (pid == 0)
 	{
 		printf("the child process id is %d\nand his parant is %d and his pid is : %d", getpid(), getppid(), pid);
@@ -84,7 +85,7 @@ int main()
 	else
 	{
 		//wait(NULL);
-		sleep(1);
+		//sleep(1);
 		//waitpid(pid, NULL, 0);
 
 		printf("the main process id is %d\nand his parant is %d his pid is : %d", getpid(), getppid(), pid);
@@ -93,4 +94,12 @@ int main()
 	int res = wait(NULL);
 	printf("the res is : %d\n", res);
 	return 0;
+}*/
+/*********************************************************************************************************************/
+int main()
+{
+	execl("/bin/ping", "ping", "google.com", NULL);//first argument is the path of the file, second is the name of the file, third is the argument of the file(optional), NULL is the end of the arguments
+
+
+	printf("this line will not be printed\n");//this line will not be printed because the process will be replaced by the new process, so the next line will not be executed
 }
