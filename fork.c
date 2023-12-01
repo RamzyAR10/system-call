@@ -96,10 +96,20 @@
 	return 0;
 }*/
 /*********************************************************************************************************************/
-int main()
+int main(/*int argc, char const *argv[], char const *envp[]*/)
 {
-	execl("/bin/ping", "ping", "google.com", NULL);//first argument is the path of the file, second is the name of the file, third is the argument of the file(optional), NULL is the end of the arguments
+	execlp("ping", "ping", "google.com", NULL);//first argument is the path of the file, second is the name of the file, third is the argument of the file(optional), NULL is the end of the arguments
+	//p is for path of first argument
+	//l is for list of  all arguments
+	//v is for vector of all arguments, like array in stade of list, array of strings have all arguments, except the first argument(the path of the file)
+	//e is for environment variables, like the path of the file, the name of the file, the arguments of the file"test = 1", NULL is the end of the arguments
+	//you need v to use e
+
+	char* args[] = {"ping", "google.com", NULL};//string array of all arguments
+	char* env[] = {"test=3awes elh", NULL};//array of environment variables
+	execvpe ("ping", args, env);//first argument is the name of the file, second is array of all arguments, third is array of environment variables
 
 
-	printf("this line will not be printed\n");//this line will not be printed because the process will be replaced by the new process, so the next line will not be executed
+
+	printf("this line will not be printed\n");//this line will not be printed because the process will be replaced by the new process, so the next line will not be executed, unless we have issue in the execl function
 }
