@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdlib.h>
  // Add this line to include the "sys/wait.h" header file
 /**
  * 		1st fork
@@ -96,14 +98,13 @@
 	return 0;
 }*/
 /*********************************************************************************************************************/
-int main(/*int argc, char const *argv[], char const *envp[]*/)
+/*int main(int argc, char const *argv[], char const *envp[])
 {
 	execlp("ping", "ping", "google.com", NULL);//first argument is the path of the file, second is the name of the file, third is the argument of the file(optional), NULL is the end of the arguments
 	//p is for path of first argument
 	//l is for list of  all arguments
 	//v is for vector of all arguments, like array in stade of list, array of strings have all arguments, except the first argument(the path of the file)
 	//e is for environment variables, like the path of the file, the name of the file, the arguments of the file"test = 1", NULL is the end of the arguments
-	//you need v to use e
 
 	char* args[] = {"ping", "google.com", NULL};//string array of all arguments
 	char* env[] = {"test=3awes elh", NULL};//array of environment variables
@@ -112,4 +113,38 @@ int main(/*int argc, char const *argv[], char const *envp[]*/)
 
 
 	printf("this line will not be printed\n");//this line will not be printed because the process will be replaced by the new process, so the next line will not be executed, unless we have issue in the execl function
+}*/
+/********************************************************************************************************************************************************/
+//signal handler = function that will be executed when the signal is received to not still executing in the background
+//stop the process when issue is happened
+/*int main()
+{
+
+}*/
+/****************************************************************************************************************************/
+//enviroment variables
+//getenv("PATH");//getenv is a function that take the name of the environment variable and return the value of the environment variable
+int main(int argc, char const *argv[], char const *envp[])
+{
+	char *env; //pointer to char to store the value of the environment variable
+	env = getenv("PATH");//get the path of the file
+	printf("%s\n", env);//print the path of the file
+	return 0;
+}*/
+/*****************************************************************************************/
+//print all environment variables
+//char *envp[] is an array of pointers to char to store the value of the environment variables like 2d array
+int main(int argc, char const *argv[], char *envp[])
+{
+	char *env;
+	int i = 0;
+
+	while (env != NULL)
+	{
+		env = envp[i];//pointer to the first element of the array of pointers to char
+		printf("%s\n", env);
+		i++;
+	}
+	return 0;
 }
+	
